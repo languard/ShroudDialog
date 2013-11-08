@@ -7,8 +7,13 @@ public class DialogNPC
 {
     public string name;
     public string description;
-    List<DialogBark> barkList = new List<DialogBark>();
-    List<DialogFlag> availableFlagList = new List<DialogFlag>();
-    List<DialogFlag> setFlagList = new List<DialogFlag>();
-	
+    public List<DialogBark> barkList = new List<DialogBark>();
+    public List<DialogFlag> availableFlagList = new List<DialogFlag>();
+    public List<DialogFlag> setFlagList = new List<DialogFlag>();
+
+    public DialogNPC()
+    {
+        name = "NOT SET";
+        description = "NOT SET";
+    }
 }

@@ -7,8 +7,6 @@ public class DialogFlagsWindow : EditorWindow
 
     static DialogDataMono dialog;
 
-    string newGlobalFlag = "";
-    string newRegionFlag = "";
 
     Vector2 scrollPos;
 
@@ -73,16 +71,10 @@ public class DialogFlagsWindow : EditorWindow
                 }
                 GUILayout.EndHorizontal();
             }
-            newGlobalFlag = GUILayout.TextField(newGlobalFlag);
             if (GUILayout.Button("Add Global Flag"))
             {
-                if (newGlobalFlag.Trim().Length > 0)
-                {
-                    newGlobalFlag = newGlobalFlag.Split(' ')[0];
-                    DialogFlag newFlag = new DialogFlag(newGlobalFlag);
-                    dialog.dialogData.globalFlags.Add(newFlag);
-                    newGlobalFlag = "";
-                }
+                DialogFlag newFlag = new DialogFlag("NOTSET");
+                dialog.dialogData.globalFlags.Add(newFlag);                
             }
             GUILayout.Label("Region Flags");
             for (int i=0; i<dialog.dialogData.regionFlags.Count; i++)
@@ -96,16 +88,10 @@ public class DialogFlagsWindow : EditorWindow
                 }
                 GUILayout.EndHorizontal();
             }
-            newRegionFlag = GUILayout.TextField(newRegionFlag);
             if (GUILayout.Button("Add Region Flag"))
-            {
-                if (newRegionFlag.Trim().Length > 0)
-                {
-                    newRegionFlag = newRegionFlag.Split(' ')[0];
-                    DialogFlag newFlag = new DialogFlag(newRegionFlag);
-                    dialog.dialogData.regionFlags.Add(newFlag);
-                    newRegionFlag = "";
-                }
+            {               
+                DialogFlag newFlag = new DialogFlag("NOTSET");
+                dialog.dialogData.regionFlags.Add(newFlag);                    
             }
             GUILayout.EndVertical();
 
