@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.Collections;
 
-public class FlagsWindow : EditorWindow
+public class DialogFlagsWindow : EditorWindow
 {
 
     static DialogDataMono dialog;
@@ -10,15 +10,15 @@ public class FlagsWindow : EditorWindow
     string newGlobalFlag = "";
     string newRegionFlag = "";
 
-    float scrollPos = 0;
+    Vector2 scrollPos;
 
-    [MenuItem("Dialog/Flags Window")]
+    [MenuItem("Dialog/Flags Editor")]
     static void ShowFlagsWindow()
     {
         GameObject temp = GameObject.Find("DialogData");
         if (temp == null)
         {
-            Debug.LogError("Failed to find dialogData object, creating a new one");
+            Debug.LogWarning("DialogData not found, creating a new one");
             temp = new GameObject();
             temp.name = "DialogData";
             temp.AddComponent<DialogDataMono>();
@@ -32,7 +32,7 @@ public class FlagsWindow : EditorWindow
                 Debug.LogError("Found dialogData, but failed to get DialogDataMono component.  Fix this!");
             }
         }
-        FlagsWindow window = (FlagsWindow)EditorWindow.GetWindow(typeof(FlagsWindow));
+        DialogFlagsWindow window = (DialogFlagsWindow)EditorWindow.GetWindow(typeof(DialogFlagsWindow));
         window.Repaint();
     }
 
@@ -56,10 +56,7 @@ public class FlagsWindow : EditorWindow
         
         try
         {
-            if (dialog == null) dialog = GameObject.Find("DialogData").GetComponent<DialogDataMono>();
-
-            GUILayout.BeginHorizontal();
-            scrollPos = GUILayout.VerticalScrollbar(scrollPos, 100, 0, 100);
+            scrollPos = GUILayout.BeginScrollView(scrollPos, false, true);
 
             GUILayout.BeginVertical();
            
@@ -112,7 +109,8 @@ public class FlagsWindow : EditorWindow
             }
             GUILayout.EndVertical();
 
-            GUILayout.EndHorizontal();
+            GUILayout.EndScrollView();
+
         }
         catch
         {

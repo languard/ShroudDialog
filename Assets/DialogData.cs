@@ -11,10 +11,13 @@ public class DialogData
     [SerializeField]
     public List<DialogFlag> regionFlags;
 
+    public List<DialogNPC> npcList;
+
     public DialogData()
     {
         globalFlags = new List<DialogFlag>();
         regionFlags = new List<DialogFlag>();
+        npcList = new List<DialogNPC>();
     }
 }
 
