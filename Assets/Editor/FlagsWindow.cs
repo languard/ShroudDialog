@@ -10,6 +10,8 @@ public class FlagsWindow : EditorWindow
     string newGlobalFlag = "";
     string newRegionFlag = "";
 
+    float scrollPos = 0;
+
     [MenuItem("Dialog/Flags Window")]
     static void ShowFlagsWindow()
     {
@@ -51,21 +53,28 @@ public class FlagsWindow : EditorWindow
 
     void OnGUI()
     {
+        
         try
         {
             if (dialog == null) dialog = GameObject.Find("DialogData").GetComponent<DialogDataMono>();
 
+            GUILayout.BeginHorizontal();
+            scrollPos = GUILayout.VerticalScrollbar(scrollPos, 100, 0, 100);
+
             GUILayout.BeginVertical();
+           
             GUILayout.Label("Global Flags");
-            foreach (DialogFlag flag in dialog.dialogData.globalFlags)
+            for (int i=0; i< dialog.dialogData.globalFlags.Count; i++)
             {
+                DialogFlag flag = dialog.dialogData.globalFlags[i];
                 GUILayout.BeginHorizontal();
                 flag.flag = GUILayout.TextField(flag.flag);
 
                 if (GUILayout.Button("X"))
                 {
-
+                    dialog.dialogData.globalFlags.RemoveAt(i);
                 }
+                GUILayout.EndHorizontal();
             }
             newGlobalFlag = GUILayout.TextField(newGlobalFlag);
             if (GUILayout.Button("Add Global Flag"))
@@ -79,9 +88,16 @@ public class FlagsWindow : EditorWindow
                 }
             }
             GUILayout.Label("Region Flags");
-            foreach (DialogFlag flag in dialog.dialogData.regionFlags)
+            for (int i=0; i<dialog.dialogData.regionFlags.Count; i++)
             {
+                DialogFlag flag = dialog.dialogData.regionFlags[i];
+                GUILayout.BeginHorizontal();
                 flag.flag = GUILayout.TextField(flag.flag);
+                if(GUILayout.Button("X"))
+                {
+                    dialog.dialogData.regionFlags.RemoveAt(i);
+                }
+                GUILayout.EndHorizontal();
             }
             newRegionFlag = GUILayout.TextField(newRegionFlag);
             if (GUILayout.Button("Add Region Flag"))
@@ -95,6 +111,8 @@ public class FlagsWindow : EditorWindow
                 }
             }
             GUILayout.EndVertical();
+
+            GUILayout.EndHorizontal();
         }
         catch
         {
