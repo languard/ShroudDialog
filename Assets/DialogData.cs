@@ -11,6 +11,7 @@ public class DialogData
     [SerializeField]
     public List<DialogFlag> regionFlags;
 
+    [SerializeField]
     public List<DialogNPC> npcList;
 
     public DialogData()

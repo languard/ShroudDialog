@@ -9,6 +9,7 @@ public class DialogBarksWindow : EditorWindow
     int focusIndex = -1;
     int activeBark = -1;
     Vector2 scrollPosition;
+    bool forceRepaint = false;
 
     [MenuItem("Dialog/Bark Editor")]
     static void CreateBarkWindow()
@@ -89,6 +90,7 @@ public class DialogBarksWindow : EditorWindow
             if (GUILayout.Button(dialog.dialogData.npcList[focusIndex].barkList[i].line, "Label"))
             {
                 activeBark = i;
+                forceRepaint = true;
             }
 
             GUI.color = Color.white;
@@ -119,12 +121,22 @@ public class DialogBarksWindow : EditorWindow
             if (activeBark >= 0 && activeBark < dialog.dialogData.npcList[focusIndex].barkList.Count)
             {
                 dialog.dialogData.npcList[focusIndex].barkList.RemoveAt(activeBark);
-                activeBark = -1;
-                GUI.FocusControl("");
+                if (activeBark == dialog.dialogData.npcList[focusIndex].barkList.Count)
+                {
+                    activeBark = dialog.dialogData.npcList[focusIndex].barkList.Count - 1;
+                }
+                if(activeBark == -1) GUI.FocusControl("");
                 Repaint();
             }
         }
 
         GUILayout.EndVertical();
+
+        if (forceRepaint)
+        {
+            forceRepaint = false;
+            GUI.FocusControl("");
+            Repaint();
+        }
     }
 }

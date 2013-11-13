@@ -1,43 +1,5 @@
-[NPC]
-[NAME]
-Lum
-[DESC]
-A very bored guard that needs to deliver the duty roster, but can't leave his post.
-[ALLBARKS]
-[BARK]
-[LINE]
-Hail outlander.  I have a small task I need help with.
-[TOKENS]
-none
-[REQUIREDFLAGS]
-none
-[FORBIDENFLAGS]
-dutyrosterdescribed
-[SAVEFLAGS]
-none
-[ENDBARK]
-[BARK]
-[LINE]
-I need to get the duty roster to the clerk.  I can't leave my post, or Captain Darkstarr will have my hide.
-[TOKENS]
-what, help, need
-[REQUIREDFLAGS]
-none
-[FORBIDENFLAGS]
-dutyrosterdescribed
-[SAVEFLAGS]
-dutyrosterdescribed
-[ENDBARK]
-[BARK]
-[LINE]
-Thank you.  Here, take this to the clerk and tell him it's the roster.
-[TOKENS]
-roster, duty, ok, yes
-[REQUIREDFLAGS]
-dutyrosterdescribed
-[FORBIDENFLAGS]
-dutyrostergiven
-[SAVEFLAGS]
-dutyrostergiven
-[ENDBARK]
-[ENDNPC]
+NPC	Bark	Tokens	Required	Forbiden	Save
+Test	Line 1	NOT SET and stuff	 asd asd asdd	 asd	asdads asd asd
+Test	Line 2	NOT SET	NOT SET	NOT SET	NOT SET
+Test	Meep Line	NOT SET	NOT SET	NOT SET	Save flag
+Test 2	Go Away!	NOT SET	NOT SET	NOT SET	NOT SET

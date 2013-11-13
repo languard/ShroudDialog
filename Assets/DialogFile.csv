@@ -1,0 +1,5 @@
+NPC,Bark,Tokens,Required,Forbiden,Save
+Test,Line 1,NOT SET and stuff, asd asd asdd, asd,asdads asd asd
+Test,Line 2,NOT SET,NOT SET,NOT SET,NOT SET
+Test,Meep Line,NOT SET,NOT SET,NOT SET,Save flag
+Test 2,Go Away!,NOT SET,NOT SET,NOT SET,NOT SET
